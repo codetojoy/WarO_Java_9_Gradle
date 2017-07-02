@@ -1,0 +1,43 @@
+
+apply plugin: 'java'
+
+sourceCompatibility = '9'
+targetCompatibility = '9'
+
+def module = "org.peidevs.waro.main"
+
+dependencies {
+    project(":org.peidevs.waro.function")
+} 
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java/${module}"]
+        }
+    }
+}
+
+compileJava {
+    options.compilerArgs.addAll([
+        "--module-source-path", "${projectDir}/src/main/java" 
+    ])  
+    options.compilerArgs.addAll([ 
+        "--module-path", "${projectDir}/../mjars:${projectDir}/../mlib" 
+    ])  
+}
+
+jar { 
+    doFirst {
+        ant.move(file: "${buildDir}/classes/java/main/${module}/org", 
+               todir: "${buildDir}/classes/java/main")
+        ant.move(file: "${buildDir}/classes/java/main/${module}/module-info.class", 
+               todir: "${buildDir}/classes/java/main")
+        ant.delete(dir: "${buildDir}/classes/java/main/${module}")
+    }
+
+    doLast {
+        ant.copy(file: "${buildDir}/libs/${module}.jar", todir: "${projectDir}/../mlib")
+    }
+}

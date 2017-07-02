@@ -1,0 +1,1 @@
+include 'org.peidevs.waro.base', 'org.peidevs.waro.function', 'org.peidevs.waro.main'
