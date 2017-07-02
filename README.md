@@ -47,3 +47,5 @@ written without modules in mind.
     * configure game by editing `org/peidevs/waro/config/impl/Config.java` in `org.peidevs.waro.base/src/main/java/org.peidevs.waro.base` (yes indeed, this sucks)
     * to build: `./build.sh`
     * to run app: `./run_waro_main.sh`
+    * to test: `./test.sh`
+    
