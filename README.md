@@ -18,12 +18,12 @@ written without modules in mind.
 ### Prerequisites
 
 * Docker
-* JDK 9 b170+
-* Gradle 4.1 milestone 1
+* JDK 9 b170+ from [here](http://jdk.java.net/9/)
+* Gradle 4.1 M1 from [here](https://github.com/gradle/gradle/releases/tag/v4.1.0-milestone-1)
 
 ### Set Up Instructions 
 
-* place JDK 9 and Gradle 4.1 zip files in `~/resources` 
+* place JDK 9 and Gradle 4.1M1 gz/zip files in `~/resources` 
 
 #### initial setup
 
@@ -33,7 +33,7 @@ written without modules in mind.
 * inside container, run: `. /data/resources/setvars.sh`
 * confirm: `java --version` and `gradle -version`
 
-### subsequent steps
+#### subsequent steps
 
 * `docker start [container name]`
 * `docker attach [container name]`
@@ -47,5 +47,3 @@ written without modules in mind.
     * configure game by editing `org/peidevs/waro/config/impl/Config.java` in `org.peidevs.waro.base/src/main/java/org.peidevs.waro.base` (yes indeed, this sucks)
     * to build: `./build.sh`
     * to run app: `./run_waro_main.sh`
-
-
