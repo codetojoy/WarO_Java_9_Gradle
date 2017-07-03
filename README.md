@@ -1,7 +1,7 @@
 ### WarO_Java_9
 
-* This is an example experimenting with JDK 9 modules with Gradle.
-* From a comment in [this thread](https://github.com/gradle/gradle/issues/2334), the goal for Gradle 4.1 is _to build a project with JDK 9_, **not** to support Jigsaw. So this is simply an illustration of using Gradle within those constraints.
+* This is an example **experimenting** with JDK 9 modules with Gradle.
+* **NOTE**: From a comment in [this thread](https://github.com/gradle/gradle/issues/2334), the goal for Gradle 4.1 is _to build a project with JDK 9_, **not** to support Jigsaw. So this is simply an illustration of using Gradle within those constraints.
 * see "Notes" below regarding issues (e.g. unit-tests simply use the classpath)
 
 WarO is a code exercise based on a simple card game. Rules are documented [here](https://github.com/peidevs/WarO_Java/blob/master/Rules.md).
