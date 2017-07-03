@@ -1,2 +1,88 @@
 
-// no-op at root
+configurations {
+    myJars
+    myAutomaticModules
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // test, used on classpath in 'jars'
+    myJars 'aopalliance:aopalliance:1.0'
+    myJars 'commons-logging:commons-logging:1.2'
+    myJars 'org.springframework:spring-aop:4.1.5.RELEASE'
+    myJars 'org.springframework:spring-expression:4.1.5.RELEASE'
+
+    // test, used on classpath in 'jars'
+    myJars 'junit:junit:4.11'
+    myJars 'org.hamcrest:hamcrest-core:1.3'
+
+    // used as automatic modules in 'mjars'
+    myAutomaticModules 'org.springframework:spring-beans:4.1.5.RELEASE'
+    myAutomaticModules 'org.springframework:spring-context:4.1.5.RELEASE'
+    myAutomaticModules 'org.springframework:spring-core:4.1.5.RELEASE'
+    myAutomaticModules 'com.google.guava:guava:18.0'
+}
+
+def getAutomaticModuleName = { jar ->
+    def result = ""         
+
+    if (jar.name ==~ /.*guava.*/) {
+        result = "guava"
+    } else if (jar.name ==~ /.*spring.beans.*/ ) {
+        result = "spring.beans"
+    } else if (jar.name ==~ /.*spring.context.*/ ) {
+        result = "spring.context"
+    } else if (jar.name ==~ /.*spring.core.*/ ) {
+        result = "spring.core"
+    }
+
+    return result
+}
+
+def isAutomaticModuleName = { jar ->
+    return (! getAutomaticModuleName(jar).isEmpty())
+}
+
+task prepareClasspath() {
+    def MY_JARS_CONFIG = 'myJars'
+    def JARS_DIR = 'jars'
+
+    doFirst {
+        println "populating regular jars in 'jars'"
+
+        ant.delete(dir: JARS_DIR)
+        ant.mkdir(dir: JARS_DIR)
+        def config = configurations.find { it.name == MY_JARS_CONFIG }
+        config.files.each { jar ->
+            if (! isAutomaticModuleName(jar)) {
+                ant.copy(todir: JARS_DIR, file: jar)
+            }
+        }
+    }
+}
+
+task prepareAutomaticModules() {
+    def MY_MJARS_CONFIG = 'myAutomaticModules'
+    def MJARS_DIR = 'mjars'
+
+    doFirst {
+        println "populating automatic modules in 'mjars'"
+
+        ant.delete(dir: MJARS_DIR)
+        ant.mkdir(dir: MJARS_DIR)
+        def config = configurations.find { it.name == MY_MJARS_CONFIG }
+        config.files.each { jar ->
+            if (isAutomaticModuleName(jar)) {
+                def automaticModuleName = getAutomaticModuleName(jar) 
+                ant.copy(tofile: "${MJARS_DIR}/${automaticModuleName}.jar", file: jar) 
+            }
+        }
+    }
+}
+
+task prepare(dependsOn: ['prepareClasspath','prepareAutomaticModules']) {
+}
+

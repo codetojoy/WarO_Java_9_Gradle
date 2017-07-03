@@ -46,9 +46,9 @@ written without modules in mind.
 ### Build Instructions 
 
 * outside of container:
-    * to prepare jars: `./prepare.sh`
     * configure game by editing `org/peidevs/waro/config/impl/Config.java` in `org.peidevs.waro.base/src/main/java/org.peidevs.waro.base` (Yes, this is painful, but OK for an illustration.)
 * inside Docker container:
+    * to prepare jars, automatic modules: `gradle prepare`
     * to build: `./build.sh`
     * to run app: `./run_waro_main.sh`
     * to test: `./test.sh`
@@ -57,7 +57,7 @@ written without modules in mind.
 
 * `jars` contain 3rd-party jars on the classpath
 * `mjars` contains 3rd-party jars used as automatic modules
-* Note: `jars` and `mjars` are populated by `prepare.sh`
+    * Note: `jars`,`mjars` populated by `~/build.gradle` 
 * `mlib` contains modular jars built by Gradle (i.e. code in this repository)
     
 ### Notes
