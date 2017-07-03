@@ -12,11 +12,14 @@ written without modules in mind.
 * `org.peidevs.waro.base`
     * requires Spring "automatic modules"
     * exports several utility packages
+    * see module-info.java [here](https://github.com/codetojoy/WarO_Java_9_Gradle/blob/master/org.peidevs.waro.base/src/main/java/org.peidevs.waro.base/module-info.java)
 * `org.peidevs.waro.function`
     * requires `waro.base` and Guava automatic module
     * exports functional packages 
+    * see module-info.java [here](https://github.com/codetojoy/WarO_Java_9_Gradle/blob/master/org.peidevs.waro.function/src/main/java/org.peidevs.waro.function/module-info.java)
 * `org.peidevs.waro.main`
-    * requires `org.peidevs.waro.base` and `org.peidevs.waro.function`
+    * requires `org.peidevs.waro.base` and `org.peidevs.waro.function`base
+    * see module-info.java [here](https://github.com/codetojoy/WarO_Java_9_Gradle/blob/master/org.peidevs.waro.main/src/main/java/org.peidevs.waro.main/module-info.java)
 
 ### Prerequisites
 
