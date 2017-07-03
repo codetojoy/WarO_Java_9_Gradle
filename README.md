@@ -1,5 +1,8 @@
 ### WarO_Java_9
 
+* example illustrating build JDK 9 modules with Gradle
+* see "Notes" below regarding issues (e.g. unit-tests simply use the classpath)
+
 WarO is a code exercise based on a simple card game. Rules are documented [here](https://github.com/peidevs/WarO_Java/blob/master/Rules.md).
 
 ### Java 9 Features 
