@@ -1,5 +1,8 @@
 .gradle
-/build/
+**/build
+mjars
+jars
+mlib
 
 # Ignore Gradle GUI config
 gradle-app.setting
