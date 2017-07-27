@@ -3,10 +3,6 @@ plugins {
     id 'java-library'
 }
 
-repositories {
-    jcenter()
-}
-
 dependencies {
     implementation project(":org.peidevs.waro.base")
 
@@ -18,25 +14,5 @@ dependencies {
 
 ext.moduleName = 'org.peidevs.waro.function'
 
-compileJava {
-    inputs.property("moduleName", moduleName)
-    doFirst {
-        options.compilerArgs = [
-            '--module-path', classpath.asPath,
-        ]
-        classpath = files()  
-    }
-}
+// see ~/build.gradle for compileJava and compileTestJava tasks re: modules
 
-compileTestJava {
-    inputs.property("moduleName", moduleName)
-    doFirst {
-        options.compilerArgs = [
-            '--module-path', classpath.asPath,
-            '--add-modules', 'junit',  
-            '--add-reads', "$moduleName=junit", 
-            '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath, 
-        ]
-        classpath = files()
-    }
-}

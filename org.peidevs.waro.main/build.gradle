@@ -6,10 +6,6 @@ plugins {
 
 mainClassName = 'org.peidevs.waro.Main'
 
-repositories {
-    jcenter()
-}
-
 dependencies {
     implementation project(':org.peidevs.waro.base')
     implementation project(':org.peidevs.waro.function')
@@ -17,15 +13,7 @@ dependencies {
 
 ext.moduleName = 'org.peidevs.waro.main'
 
-compileJava {
-    inputs.property("moduleName", moduleName)
-    doFirst {
-        options.compilerArgs = [
-            '--module-path', classpath.asPath, 
-        ]
-        classpath = files()  
-    }
-}
+// see ~/build.gradle for compileJava and compileTestJava tasks re: modules
 
 project.ext.stagingDir = 'staging'
 

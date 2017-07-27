@@ -68,6 +68,5 @@ written without modules in mind.
 
 ### TODO
 
-* Consolidate build logic in a root-level `build.gradle`
 * The `org.peidevs.waro.base` module exports internals to `org.peidevs.waro.function` for testing. This needs to be cleaned up.
 * Run on Travis CI with Gradle Wrapper etc.
