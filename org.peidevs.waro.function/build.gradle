@@ -1,42 +1,42 @@
 
-apply plugin: 'java'
+plugins {
+    id 'java-library'
+}
 
-sourceCompatibility = '9'
-targetCompatibility = '9'
-
-def module = "org.peidevs.waro.function"
+repositories {
+    jcenter()
+}
 
 dependencies {
-    project(":org.peidevs.waro.base")
+    implementation project(":org.peidevs.waro.base")
+
+    // NOTE: automatic module, referenced in module-info.java
+    implementation 'com.google.guava:guava:18.0'
+
+    testImplementation 'junit:junit:4.11'
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ["src/main/java/${module}"]
-        }
-    }
-}
+ext.moduleName = 'org.peidevs.waro.function'
 
 compileJava {
-    options.compilerArgs.addAll([
-        "--module-source-path", "${projectDir}/src/main/java" 
-    ])  
-    options.compilerArgs.addAll([ 
-        "--module-path", "${projectDir}/../mjars:${projectDir}/../mlib" 
-    ])  
+    inputs.property("moduleName", moduleName)
+    doFirst {
+        options.compilerArgs = [
+            '--module-path', classpath.asPath,
+        ]
+        classpath = files()  
+    }
 }
 
-jar { 
+compileTestJava {
+    inputs.property("moduleName", moduleName)
     doFirst {
-        ant.move(file: "${buildDir}/classes/java/main/${module}/org", 
-               todir: "${buildDir}/classes/java/main")
-        ant.move(file: "${buildDir}/classes/java/main/${module}/module-info.class", 
-               todir: "${buildDir}/classes/java/main")
-        ant.delete(dir: "${buildDir}/classes/java/main/${module}")
-    }
-
-    doLast {
-        ant.copy(file: "${buildDir}/libs/${module}.jar", todir: "${projectDir}/../mlib")
+        options.compilerArgs = [
+            '--module-path', classpath.asPath,
+            '--add-modules', 'junit',  
+            '--add-reads', "$moduleName=junit", 
+            '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath, 
+        ]
+        classpath = files()
     }
 }

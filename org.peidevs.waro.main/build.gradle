@@ -1,43 +1,29 @@
 
-apply plugin: 'java'
+plugins {
+    id 'java-library'
+    id 'application'
+}
 
-sourceCompatibility = '9'
-targetCompatibility = '9'
+mainClassName = 'org.peidevs.waro.Main'
 
-def module = "org.peidevs.waro.main"
+repositories {
+    jcenter()
+}
 
 dependencies {
-    project(":org.peidevs.waro.function")
-} 
-
-
-sourceSets {
-    main {
-        java {
-            srcDirs = ["src/main/java/${module}"]
-        }
-    }
+    implementation project(':org.peidevs.waro.base')
+    implementation project(':org.peidevs.waro.function')
 }
+
+ext.moduleName = 'org.peidevs.waro.main'
 
 compileJava {
-    options.compilerArgs.addAll([
-        "--module-source-path", "${projectDir}/src/main/java" 
-    ])  
-    options.compilerArgs.addAll([ 
-        "--module-path", "${projectDir}/../mjars:${projectDir}/../mlib" 
-    ])  
-}
-
-jar { 
+    inputs.property("moduleName", moduleName)
     doFirst {
-        ant.move(file: "${buildDir}/classes/java/main/${module}/org", 
-               todir: "${buildDir}/classes/java/main")
-        ant.move(file: "${buildDir}/classes/java/main/${module}/module-info.class", 
-               todir: "${buildDir}/classes/java/main")
-        ant.delete(dir: "${buildDir}/classes/java/main/${module}")
-    }
-
-    doLast {
-        ant.copy(file: "${buildDir}/libs/${module}.jar", todir: "${projectDir}/../mlib")
+        options.compilerArgs = [
+            '--module-path', classpath.asPath, 
+        ]
+        classpath = files()  
     }
 }
+

@@ -1,34 +1,50 @@
 
-apply plugin: 'java'
-
-sourceCompatibility = '9'
-targetCompatibility = '9'
-
-def module = "org.peidevs.waro.base"
-
-sourceSets {
-    main {
-        java {
-            srcDirs = ["src/main/java/${module}"]
-        }
-    }
+plugins {
+    id 'java-library'
 }
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // NOTE: automatic modules, referenced in module-info.java
+    implementation 'org.springframework:spring-beans:4.1.5.RELEASE'
+    implementation 'org.springframework:spring-context:4.1.5.RELEASE'
+    implementation 'org.springframework:spring-core:4.1.5.RELEASE'
+
+    testImplementation 'junit:junit:4.11'
+}
+
+ext.moduleName = 'org.peidevs.waro.base'
 
 compileJava {
-    options.compilerArgs.addAll([ "--module-source-path", "${projectDir}/src/main/java" ])  
-    options.compilerArgs.addAll([ "--module-path", "${projectDir}/../mjars" ])  
-}
-
-jar { 
+    inputs.property("moduleName", moduleName)
     doFirst {
-        ant.move(file: "${buildDir}/classes/java/main/${module}/org", 
-               todir: "${buildDir}/classes/java/main")
-        ant.move(file: "${buildDir}/classes/java/main/${module}/module-info.class", 
-               todir: "${buildDir}/classes/java/main")
-        ant.delete(dir: "${buildDir}/classes/java/main/${module}")
-    }
-
-    doLast {
-        ant.copy(file: "${buildDir}/libs/${module}.jar", todir: "${projectDir}/../mlib")
+        options.compilerArgs = [
+            '--module-path', classpath.asPath, 
+        ]
+        classpath = files()  
     }
 }
+
+compileTestJava {
+    inputs.property("moduleName", moduleName)
+    doFirst {
+        options.compilerArgs = [
+            '--module-path', classpath.asPath, 
+            '--add-modules', 'junit',  
+            '--add-reads', "$moduleName=junit", 
+            '--patch-module', "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath, 
+        ]
+        classpath = files()
+    }
+}
+
+/*
+jar {
+    doLast {
+        ant.copy(file: "${buildDir}/libs/org.peidevs.waro.base.jar", todir: "${projectDir}/../mlib")
+    }
+}
+*/
