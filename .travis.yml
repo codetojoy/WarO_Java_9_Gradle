@@ -9,6 +9,6 @@ jdk:
   - oraclejdk9
 
 install:
-- gradle clean test
-- gradle :org.peidevs.waro.main:run
+- ./gradlew clean test
+- ./gradlew :org.peidevs.waro.main:run
 
