@@ -1,1 +1,14 @@
-language: groovy
+language: java
+sudo: false
+dist: trusty
+
+notifications:
+    email: false
+
+jdk:
+  - oraclejdk9
+
+install:
+- gradle clean test
+- gradle :org.peidevs.waro.main:run
+
