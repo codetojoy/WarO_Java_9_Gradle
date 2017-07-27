@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/peidevs/WarO_Java_9_Gradle.svg?branch=master)](https://travis-ci.org/peidevs/WarO_Java_9_Gradle)
+[![Build Status](https://travis-ci.org/codetojoy/WarO_Java_9_Gradle.svg?branch=master)](https://travis-ci.org/codetojoy/WarO_Java_9_Gradle)
 
 ### WarO_Java_9
 
@@ -71,4 +71,3 @@ written without modules in mind.
 ### TODO
 
 * The `org.peidevs.waro.base` module exports internals to `org.peidevs.waro.function` for testing. This needs to be cleaned up.
-* Run on Travis CI with Gradle Wrapper etc.
