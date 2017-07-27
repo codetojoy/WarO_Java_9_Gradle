@@ -1,7 +1,7 @@
 ### WarO_Java_9
 
 * This is an example illustrating JDK 9 modules with Gradle.
-* Currently uses JDK9 b179 and Gradle 4.1-rc-1 (as of 27-JUL-2017).
+* Currently uses JDK9 b179 and Gradle 4.1 RC1 (as of 27-JUL-2017).
 * [This Gradle guide](https://guides.gradle.org/building-java-9-modules/) was highly useful as a reference.
 
 WarO is a code exercise based on a simple card game. Rules are documented [here](https://github.com/peidevs/WarO_Java/blob/master/Rules.md).
@@ -26,11 +26,11 @@ written without modules in mind.
 
 * Docker (optional)
 * JDK 9 b179+ from [here](http://jdk.java.net/9/)
-* Gradle 4.1-rc-1 from [here](https://github.com/gradle/gradle/releases/tag/v4.1.0-RC1)
+* Gradle 4.1 RC1 from [here](https://github.com/gradle/gradle/releases/tag/v4.1.0-RC1)
 
 ### Set Up Instructions (if using Docker) 
 
-* if using Docker, place JDK 9 and Gradle 4.1M1 gz/zip files in `~/resources` 
+* if using Docker, place JDK 9 and Gradle 4.1 RC1 gz/zip files in `~/resources` 
 
 #### setup container
 
