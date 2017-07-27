@@ -56,6 +56,10 @@ written without modules in mind.
     * to build: `gradle jar`
     * to test: `gradle test`
     * to run app: `gradle :org.peidevs.waro.main:run`
+    * alternative to run app:
+        * `gradle :org.peidevs.waro.main:installDist`
+        * `cd org.peidevs.waro.main/staging/bin`
+        * `./org.peidevs.waro.main`
 
 ### Automatic Modules
 

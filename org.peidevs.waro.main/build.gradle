@@ -27,3 +27,13 @@ compileJava {
     }
 }
 
+project.ext.stagingDir = 'staging'
+
+installDist.doFirst {
+    ant.delete(dir: project.ext.stagingDir)
+}
+
+installDist {
+    into project.ext.stagingDir
+}
+
