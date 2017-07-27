@@ -64,7 +64,7 @@ written without modules in mind.
 ### Automatic Modules
 
 * Compare the `build.gradle` files with the `module-info.java` files.
-* Automatic modules are specified in `dependencies` as usual. Gradle must be doing work to translate between the two. e.g. Resolving that `spring.beans` is `org.springframework:spring-beans:4.1.5.RELEASE`
+* Automatic modules are specified in `dependencies` as usual. Gradle is clearly adding value by translating between the two. e.g. Resolving that `spring.beans` in `module-info.java` refers to `org.springframework:spring-beans:4.1.5.RELEASE` in `build.gradle`.
 
 ### TODO
 
