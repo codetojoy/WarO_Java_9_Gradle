@@ -1,8 +1,7 @@
 ### WarO_Java_9
 
-* This is an example **experimenting** with JDK 9 modules with Gradle.
-* **NOTE**: From a comment in [this thread](https://github.com/gradle/gradle/issues/2334), the goal for Gradle 4.1 is _to build a project with JDK 9_, **not** to support Jigsaw. So this is simply an illustration of using Gradle within those constraints.
-* see "Notes" below regarding issues (e.g. unit-tests simply use the classpath)
+* This is an example illustrating JDK 9 modules with Gradle.
+* Currently uses JDK9 b179 and Gradle 4.1-rc-1 (as of 27-JUL-2017).
 
 WarO is a code exercise based on a simple card game. Rules are documented [here](https://github.com/peidevs/WarO_Java/blob/master/Rules.md).
 
@@ -25,8 +24,8 @@ written without modules in mind.
 ### Prerequisites
 
 * Docker (optional)
-* JDK 9 b170+ from [here](http://jdk.java.net/9/)
-* Gradle 4.1 M1 from [here](https://github.com/gradle/gradle/releases/tag/v4.1.0-milestone-1)
+* JDK 9 b179+ from [here](http://jdk.java.net/9/)
+* Gradle 4.1-rc-1 from [here](https://github.com/gradle/gradle/releases/tag/v4.1.0-RC1)
 
 ### Set Up Instructions (if using Docker) 
 
@@ -34,8 +33,8 @@ written without modules in mind.
 
 #### setup container
 
-* run: `docker build -t="jdk9/b175" .` 
-* run: `docker run -i -t -v $(pwd):/data jdk9/b175`
+* run: `docker build -t="jdk9/waro" .` 
+* run: `docker run -i -t -v $(pwd):/data jdk9/waro`
 * inside container, run: `/data/resources/install.sh`
 * inside container, run: `. /data/resources/setvars.sh`
 * confirm: `java --version` and `gradle -version`
@@ -52,23 +51,12 @@ written without modules in mind.
 * outside of container:
     * configure game by editing `org/peidevs/waro/config/impl/Config.java` in `org.peidevs.waro.base/src/main/java/org.peidevs.waro.base` (Yes, this is painful, but OK for an illustration.)
 * inside Docker container:
-    * to prepare jars, automatic modules: `gradle prepare`
-    * to build: `./build.sh`
-    * to run app: `./run_waro_main.sh`
-    * to test: `./test.sh`
+    * first: `cd /data`
+    * to build: `gradle jar`
+    * to test: `gradle test`
+    * to run app: `gradle :org.peidevs.waro.main:run`
 
-### Runtime Layout
+### Automatic Modules
 
-* `jars` contain 3rd-party jars on the classpath
-* `mjars` contains 3rd-party jars used as automatic modules
-    * Note: `jars`,`mjars` populated by `~/build.gradle` 
-* `mlib` contains modular jars built by Gradle (i.e. code in this repository)
-    
-### Notes
-
-* In my experience with Gradle 4.1M1, the `jar` task puts the module name in the package of files:
-    * `org.peidevs.waro.base/org/peidevs/waro/base/.../Player.class`
-    * As a kludge, I have custom code that strips the top level module name.
-* Running unit tests is a challenge, so there are seperate `test.build.gradle` files that uses all jars on the classpath.
-* This might be my mistake, or possibly just early issues. I'll update this repo as things get sorted out.
-
+* Compare the `build.gradle` files with the `module-info.java` files.
+* Automatic modules are specified in `dependencies` as usual. Gradle must be doing work to translate between the two. e.g. Resolving that `spring.beans` is `org.springframework:spring-beans:4.1.5.RELEASE`

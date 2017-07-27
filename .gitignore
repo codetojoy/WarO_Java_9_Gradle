@@ -1,8 +1,7 @@
 .gradle
 **/build
-mjars
-jars
-mlib
+**/*.zip
+**/*.gz
 
 # Ignore Gradle GUI config
 gradle-app.setting
