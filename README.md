@@ -2,6 +2,7 @@
 
 * This is an example illustrating JDK 9 modules with Gradle.
 * Currently uses JDK9 b179 and Gradle 4.1-rc-1 (as of 27-JUL-2017).
+* [This Gradle guide](https://guides.gradle.org/building-java-9-modules/) was highly useful as a reference.
 
 WarO is a code exercise based on a simple card game. Rules are documented [here](https://github.com/peidevs/WarO_Java/blob/master/Rules.md).
 
@@ -60,3 +61,8 @@ written without modules in mind.
 
 * Compare the `build.gradle` files with the `module-info.java` files.
 * Automatic modules are specified in `dependencies` as usual. Gradle must be doing work to translate between the two. e.g. Resolving that `spring.beans` is `org.springframework:spring-beans:4.1.5.RELEASE`
+
+### TODO
+
+* Consolidate build logic in a root-level `build.gradle`
+* The `org.peidevs.waro.base` module exports internals to `org.peidevs.waro.function` for testing. This needs to be cleaned up.
