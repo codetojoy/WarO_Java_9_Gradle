@@ -1,6 +1,5 @@
 
 // from https://github.com/gradle-guides/building-java-9-modules
-// build tickle
 
 subprojects {
     afterEvaluate {

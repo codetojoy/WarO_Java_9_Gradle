@@ -1,8 +1,0 @@
-use romantic_ramanujan
-
-docker start ...
-docker attach ...
-hit enter
-. /data/resources/setvars.sh 
-gradle -version
-
