@@ -57,6 +57,7 @@ written without modules in mind.
     * first: `cd /data`
     * to build: `gradle jar`
     * to test: `gradle test`
+    * **NOTE**: I think that running the app, in this code, is just using the classpath and note the modulepath. I've tried to follow the guide, but am encountering problems. Will update when I can.
     * to run app: `gradle :org.peidevs.waro.main:run`
     * alternative to run app:
         * `gradle :org.peidevs.waro.main:installDist`
