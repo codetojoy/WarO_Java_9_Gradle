@@ -5,6 +5,7 @@
 * This is an example illustrating JDK 9 modules with Gradle.
 * Currently uses JDK9 b179 and Gradle 4.1 RC1 (as of 27-JUL-2017).
 * [This Gradle guide](https://guides.gradle.org/building-java-9-modules/) was highly useful as a reference.
+* Note: there is currently [an issue](https://github.com/codetojoy/WarO_Java_9_Gradle/issues/1) (in this repo) with configuring the Gradle application to run the app.
 
 WarO is a code exercise based on a simple card game. Rules are documented [here](https://github.com/peidevs/WarO_Java/blob/master/Rules.md).
 
