@@ -1,10 +1,10 @@
 
+import java.util.regex.Matcher
+
 plugins {
     id 'java-library'
     id 'application'
 }
-
-mainClassName = 'org.peidevs.waro.Main'
 
 dependencies {
     implementation project(':org.peidevs.waro.base')
@@ -12,6 +12,8 @@ dependencies {
 }
 
 ext.moduleName = 'org.peidevs.waro.main'
+
+mainClassName = "org.peidevs.waro.Main"
 
 // see ~/build.gradle for compileJava and compileTestJava tasks re: modules
 
@@ -25,3 +27,34 @@ installDist {
     into project.ext.stagingDir
 }
 
+run {
+    inputs.property("moduleName", moduleName)
+    doFirst {
+        jvmArgs = [
+            '--module-path', classpath.asPath,
+            '--add-modules', moduleName,
+            '--add-opens', 'java.base/java.lang=spring.core',
+        ]
+    }
+}
+
+startScripts {
+    inputs.property("moduleName", moduleName)
+    doFirst {
+        defaultJvmOpts = [
+            '--module-path', 'APP_HOME_LIB',
+            '--add-modules', moduleName,
+            '--add-opens', 'java.base/java.lang=spring.core',
+        ]
+    }
+
+    doLast{
+        def bashFile = new File(outputDir, applicationName)
+        String bashContent = bashFile.text
+        bashFile.text = bashContent.replaceFirst('APP_HOME_LIB', Matcher.quoteReplacement('$APP_HOME/lib'))
+
+        def batFile = new File(outputDir, applicationName + ".bat")
+        String batContent = batFile.text
+        batFile.text = batContent.replaceFirst('APP_HOME_LIB', Matcher.quoteReplacement('%APP_HOME%\\lib'))
+    }
+}

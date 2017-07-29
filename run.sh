@@ -15,3 +15,4 @@ java \
 --add-opens java.base/java.lang=spring.core \
 org.peidevs.waro.Main
 
+
