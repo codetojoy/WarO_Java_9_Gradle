@@ -5,7 +5,10 @@
 * This is an example illustrating JDK 9 modules with Gradle.
 * Currently uses JDK9 b179 and Gradle 4.1 RC1 (as of 27-JUL-2017).
 * [This Gradle guide](https://guides.gradle.org/building-java-9-modules/) was highly useful as a reference.
-* Note: there is currently [an issue](https://github.com/codetojoy/WarO_Java_9_Gradle/issues/1) (in this repo) with configuring the Gradle application to run the app.
+* Note: Configuring the Gradle application to run the app. See [here](https://github.com/codetojoy/WarO_Java_9_Gradle/blob/master/org.peidevs.waro.main/build.gradle). Steps:
+    * `import java.util.regex.Matcher`  
+    * use `'--add-modules', moduleName` instead of  `'--module', mainClassName`
+    * add `'--add-opens', 'java.base/java.lang=spring.core'` due to the nature of this app 
 
 WarO is a code exercise based on a simple card game. Rules are documented [here](https://github.com/peidevs/WarO_Java/blob/master/Rules.md).
 
@@ -58,10 +61,12 @@ written without modules in mind.
     * first: `cd /data`
     * to build: `gradle jar`
     * to test: `gradle test`
-    * **NOTE**: For running the application, I've tried to follow the guide, but am encountering problems. Will update when I can.
-    * to run app (for now):
+    * to run app (from Gradle):
+        * `gradle :org.peidevs.waro.main:run`
+    * to run app (as script):
         * `gradle :org.peidevs.waro.main:installDist`
-        * `./run.sh`
+        * then `./org.peidevs.waro.main/staging/bin/org.peidevs.waro.main`
+        * or a home-grown version for trouble-shooting: `./run.sh`
 
 ### Automatic Modules
 
