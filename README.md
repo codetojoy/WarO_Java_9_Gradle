@@ -37,7 +37,7 @@ written without modules in mind.
 
 * Docker (optional)
 * JDK 9 b179+ from [here](http://jdk.java.net/9/)
-* Gradle 4.1 RC1 from [here](https://github.com/gradle/gradle/releases/tag/v4.1.0-RC1)
+* Gradle 4.1 from [here](https://gradle.org/releases/)
 
 ### Set Up Instructions (if using Docker) 
 
