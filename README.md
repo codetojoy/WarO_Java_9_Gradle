@@ -41,7 +41,7 @@ written without modules in mind.
 
 ### Set Up Instructions (if using Docker) 
 
-* if using Docker, place JDK 9 and Gradle 4.1 RC1 gz/zip files in `~/resources` 
+* if using Docker, place JDK 9 and Gradle 4.1 gz/zip files in `~/resources` 
 
 #### setup container
 
