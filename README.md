@@ -77,6 +77,7 @@ written without modules in mind.
 
 * Compare the `build.gradle` files with the `module-info.java` files.
 * Automatic modules are specified in `dependencies` as usual. Gradle is clearly adding value by translating between the two: 
+
 | Module  | in module-info.java | in Gradle |
 | ------------- | ------------- | ------------- |
 | org.peidevs.waro.base  | spring.beans  | org.springframework:spring-beans:4.1.5.RELEASE |
