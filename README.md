@@ -4,7 +4,7 @@
 
 * This is an example illustrating JDK 9 modules with Gradle.
 * There are also versions for using [command-line tools](https://github.com/codetojoy/WarO_Java_9) and [Maven](https://github.com/codetojoy/WarO_Java_9_Maven) (a work in progress).
-* Tested with JDK 9 b179 and Gradle 4.1 (as of 07-AUG-2017).
+* Tested with JDK 9 b181 and Gradle 4.1 (as of 09-AUG-2017).
 * [This Gradle guide](https://guides.gradle.org/building-java-9-modules/) was highly useful as a reference.
 * Note: I deviated from the guide when configuring the Gradle application to run the app. See [here](https://github.com/codetojoy/WarO_Java_9_Gradle/blob/master/org.peidevs.waro.main/build.gradle). Steps:
     * `import java.util.regex.Matcher`  
