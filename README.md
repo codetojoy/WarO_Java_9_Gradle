@@ -26,7 +26,7 @@ written without modules in mind.
     * exports functional packages 
     * see module-info.java [here](https://github.com/codetojoy/WarO_Java_9_Gradle/blob/master/org.peidevs.waro.function/src/main/java/org.peidevs.waro.function/module-info.java)
 * `org.peidevs.waro.main`
-    * requires `org.peidevs.waro.base` and `org.peidevs.waro.function`base
+    * requires `org.peidevs.waro.base` and `org.peidevs.waro.function`
     * see module-info.java [here](https://github.com/codetojoy/WarO_Java_9_Gradle/blob/master/org.peidevs.waro.main/src/main/java/org.peidevs.waro.main/module-info.java)
 
 * Overview:
@@ -76,7 +76,13 @@ written without modules in mind.
 ### Automatic Modules
 
 * Compare the `build.gradle` files with the `module-info.java` files.
-* Automatic modules are specified in `dependencies` as usual. Gradle is clearly adding value by translating between the two. e.g. Resolving that `spring.beans` in `module-info.java` refers to `org.springframework:spring-beans:4.1.5.RELEASE` in `build.gradle`.
+* Automatic modules are specified in `dependencies` as usual. Gradle is clearly adding value by translating between the two: 
+| Module  | in module-info.java | in Gradle |
+| ------------- | ------------- | ------------- |
+| org.peidevs.waro.base  | spring.beans  | org.springframework:spring-beans:4.1.5.RELEASE |
+| org.peidevs.waro.base  | spring.context  | org.springframework:spring-context:4.1.5.RELEASE |
+| org.peidevs.waro.base  | spring.core  | org.springframework:spring-core:4.1.5.RELEASE |
+| org.peidevs.waro.function  | guava  | com.google.guava:guava:18.0 |
 
 ### TODO
 
