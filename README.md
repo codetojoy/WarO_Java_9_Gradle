@@ -43,20 +43,19 @@ written without modules in mind.
 ### Set Up Instructions (if using Docker) 
 
 * if using Docker, place JDK 9 and Gradle 4.1 gz/zip files in `~/resources` 
+* `Dockerfile` currently assumes JDK 9 b181 and Gradle 4.1
+    * if using different versions, edit `Dockerfile` appropriately
 
 #### setup container
 
 * run: `docker build -t="jdk9/waro" .` 
 * run: `docker run -i -t -v $(pwd):/data jdk9/waro`
-* inside container, run: `/data/resources/install.sh`
-* inside container, run: `. /data/resources/setvars.sh`
 * confirm: `java --version` and `gradle -version`
 
 #### using container
 
 * `docker start [container name]`
 * `docker attach [container name]`
-* run: `. /data/resources/setvars.sh`
 * confirm: `java --version` and `gradle -version`
 
 ### Build Instructions 
