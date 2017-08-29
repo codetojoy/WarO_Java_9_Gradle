@@ -1,8 +1,7 @@
 package org.peidevs.waro.function;
 
 import org.peidevs.waro.player.*;
-import org.peidevs.waro.strategy.Strategy;
-import org.peidevs.waro.strategy.impl.*;
+import org.peidevs.waro.strategy.*;
 
 import static org.junit.Assert.*;
 import java.util.*;
@@ -17,7 +16,7 @@ public class TourneyTest {
         int numGames = 3;
         int numCards = 12;
         int maxCard = numCards;
-        Strategy strategy = new NextCard();
+        Strategy strategy = Strategies.getNextCardStrategy();
         List<Player> players = new ArrayList<>();
         
         Player p1 = new Player("p1", strategy, maxCard, new Hand());
