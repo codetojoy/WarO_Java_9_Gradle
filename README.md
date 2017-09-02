@@ -85,6 +85,3 @@ written without modules in mind.
 | org.peidevs.waro.base  | spring.core  | org.springframework:spring-core:4.1.5.RELEASE |
 | org.peidevs.waro.function  | guava  | com.google.guava:guava:18.0 |
 
-### TODO
-
-* The `org.peidevs.waro.base` module exports internals to `org.peidevs.waro.function` for testing. This needs to be cleaned up.
