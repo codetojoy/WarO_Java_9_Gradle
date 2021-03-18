@@ -4,7 +4,7 @@
 subprojects {
     afterEvaluate {
         repositories {
-            jcenter()
+            mavenCentral()
         }
 
         compileJava {
