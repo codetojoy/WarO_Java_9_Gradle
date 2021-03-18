@@ -1,6 +1,11 @@
 
 plugins {
     id 'java-library'
+    id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
+}
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
@@ -12,7 +17,5 @@ dependencies {
     testImplementation 'junit:junit:4.11'
 }
 
-ext.moduleName = 'org.peidevs.waro.base'
-
-// see ~/build.gradle for compileJava and compileTestJava tasks re: modules
+javaModule.name = 'org.peidevs.waro.base'
 

@@ -2,6 +2,11 @@
 plugins {
     id 'java-library'
     id 'application'
+    id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
+}
+
+repositories {
+    mavenCentral()
 }
 
 mainClassName = 'org.peidevs.waro.Main'
@@ -11,9 +16,7 @@ dependencies {
     implementation project(':org.peidevs.waro.function')
 }
 
-ext.moduleName = 'org.peidevs.waro.main'
-
-// see ~/build.gradle for compileJava and compileTestJava tasks re: modules
+javaModule.name = 'org.peidevs.waro.main'
 
 project.ext.stagingDir = 'staging'
 
@@ -24,4 +27,3 @@ installDist.doFirst {
 installDist {
     into project.ext.stagingDir
 }
-
