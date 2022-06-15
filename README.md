@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/codetojoy/WarO_Java_9_Gradle.svg?branch=master)](https://travis-ci.org/codetojoy/WarO_Java_9_Gradle)
 
 ### WarO_Java_9
 
